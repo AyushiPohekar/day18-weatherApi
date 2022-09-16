@@ -1,3 +1,6 @@
+
+
+
 // bootstrap container
 var container=document.createElement('div');
 container.setAttribute('class','container');
@@ -6,12 +9,12 @@ container.setAttribute('class','container');
 // bootstrap row
 var row=document.createElement('div');
 row.setAttribute('class','row');
-container.append(row);
-document.body.append(container);
+
+
 
 // pagination logic
 var cur_page=0;
-var records_per_page=21;
+var records_per_page=25;
 var max_pages=Math.ceil(250/records_per_page);
 
 function prev_page()
@@ -31,13 +34,11 @@ function next_page()
 
 function changePage(num)
 {
-    if(num<1)
-    {
-        num=1;
-    }
-    if(num>max_pages){
+    if(num<1) num=1;
+    
+    if(num>max_pages)
         num=max_pages;
-    }
+    
 
     var startpoint=(num-1)*records_per_page;
     var endpoint=(num)*records_per_page;
@@ -45,24 +46,23 @@ function changePage(num)
     cur_page=num;
     Create_data_container(startpoint,endpoint);
 
-    if (num===1){
-        document.getElementById("prev").style.visibility="hidden";
-    }
-    else{
-        document.getElementById("prev").style.visibility="hidden";
+    if (num === 1) {
+        document.getElementById('prev').style.visibility = "hidden";
+    } else {
+        document.getElementById('prev').style.visibility = "visible";
     }
 
-    if (num===max-pages){
-        document.getElementById("next").style.visibility="hidden";
-    }
-    else{
-        document.getElementById("prev").style.visibility="hidden";
+    if (num === max_pages) {
+        document.getElementById('prev').style.visibility = "hidden";
+    } else {
+        document.getElementById('next').style.visibility = "visible";
     }
 }
 
 function Create_data_container(start,end){
+    container.innerHTML=' ';
  async function get_weather_data() {
-        container.innerHTML='';
+        
         try {
             let response = await fetch("https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
             console.log(response);
@@ -70,7 +70,8 @@ function Create_data_container(start,end){
             console.log(data);
             
             
-             data.forEach((element, index) => {
+            for(var i=start;i<end;i++)
+            {
                 var card = document.createElement('div');
                 card.setAttribute('class','card row col-lg-4 col-md-6 col-sm-12');
                 card.setAttribute("id","cards")
@@ -78,17 +79,20 @@ function Create_data_container(start,end){
     
                 var header = document.createElement('h4')
                 header.setAttribute('class', 'card-title text-center  text-black')
-                header.innerHTML = element.name;
-                console.log(element.name);
+                header.innerHTML = data[i].name;
+                
     
 
                 
-
-                card.append(header);
+                
+               
                 row.append(card);
+                card.append(header);
                 container.append(row);
-            })
-           
+                
+                document.body.append(container);
+            
+            }
 
 
         
@@ -126,9 +130,9 @@ function createAnchorlist()
     for(var i=1;i<=11;i++)
     {
         var a=document.createElement('a');
-        a.href=`javascript:(${i})`;
+        a.href=`javascript:changePage(${i})`;
         a.innerHTML=i;
-        if(i==1)
+        if(i===1)
         {
             a.setAttribute("class","active");
         }
@@ -137,7 +141,7 @@ function createAnchorlist()
     return ar;
 }
 Anchorlist.append(prev, arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8], arr[9],arr[10],next)
-container.append(Anchorlist);
+document.body.append(Anchorlist);
 
 changePage(1);
 

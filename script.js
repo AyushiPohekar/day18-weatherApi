@@ -60,7 +60,7 @@ function changePage(num)
 }
 
 function Create_data_container(start,end){
-    container.innerHTML=' ';
+    row.innerHTML=' ';
  async function get_weather_data() {
         
         try {
@@ -68,29 +68,28 @@ function Create_data_container(start,end){
             console.log(response);
             let data = await response.json();
             console.log(data);
-            
+           ;
             
             for(var i=start;i<end;i++)
             {
                 var card = document.createElement('div');
                 card.setAttribute('class','card row col-lg-4 col-md-6 col-sm-12');
-                card.setAttribute("id","cards")
-    
-    
+                 card.setAttribute("id","cards");
+
+           
                 var header = document.createElement('h4')
                 header.setAttribute('class', 'card-title text-center  text-black')
                 header.innerHTML = data[i].name;
-                
-    
 
-                
-                
-               
+                 
+
+
                 row.append(card);
-                card.append(header);
                 container.append(row);
+                card.append(header);
+              
                 
-                document.body.append(container);
+           
             
             }
 
@@ -141,7 +140,7 @@ function createAnchorlist()
     return ar;
 }
 Anchorlist.append(prev, arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8], arr[9],arr[10],next)
-document.body.append(Anchorlist);
+document.body.append(Anchorlist,container);
 
 changePage(1);
 

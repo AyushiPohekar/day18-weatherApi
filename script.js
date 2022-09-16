@@ -64,11 +64,11 @@ function Create_data_container(start,end){
  async function get_weather_data() {
         
         try {
-            let response = await fetch("https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
+            let response = await fetch("https://restcountries.com/v3.1/all");
             console.log(response);
             let data = await response.json();
             console.log(data);
-           ;
+            
             
             for(var i=start;i<end;i++)
             {
@@ -79,9 +79,9 @@ function Create_data_container(start,end){
            
                 var header = document.createElement('h4')
                 header.setAttribute('class', 'card-title text-center  text-black')
-                header.innerHTML = data[i].name;
+                header.innerHTML = data[i].name.common;
 
-                 
+                console.log(data[i].flags.png);
 
 
                 row.append(card);

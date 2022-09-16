@@ -60,7 +60,7 @@ function changePage(num)
     }
 }
 
-
+function Create_data_container(start,end){
  async function get_weather_data() {
         container.innerHTML='';
         try {
@@ -99,6 +99,8 @@ function changePage(num)
         }
     }
     get_weather_data();
+}
+
 
 
 // Anchorlist
@@ -137,7 +139,7 @@ function createAnchorlist()
 Anchorlist.append(prev, arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8], arr[9],arr[10],next)
 container.append(Anchorlist);
 
-
+changePage(1);
 
 
 

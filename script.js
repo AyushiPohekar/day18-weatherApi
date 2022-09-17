@@ -89,14 +89,23 @@ function Create_data_container(start, end) {
 
         var button = document.createElement("button");
         button.setAttribute("class", "btn-btn-info button");
-        console.log('before fetching:',i);
+        // console.log('before fetching:',i);
         button.innerHTML = "Click for Weather";
         button.setAttribute('id',i);
+        // button.onclick=GFG_click(this.id);
+          
+        // function GFG_click(clicked) {
+        //     var el= document.createElement('p');
+        //     el.innerHTML = clicked;
+        //     console.log(el);
+        // }         
+            
         button.onclick = async function () {
           try {
             console.log(i);
+            console.log(this.id);
             var response1 = await fetch(
-              `https://api.openweathermap.org/data/2.5/weather?lat=${data[i].latlng[0]}&lon=${data[i].latlng[1]}&appid=9886709d311837a96f411b3ed9f3b47e`
+              `https://api.openweathermap.org/data/2.5/weather?lat=${data[this.id].latlng[0]}&lon=${data[this.id].latlng[1]}&appid=9886709d311837a96f411b3ed9f3b47e`
             );
             var data1 = await response1.json();
             console.log(data1);

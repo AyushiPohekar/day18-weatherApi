@@ -30,9 +30,9 @@ h1{
 
 #cards{
     background-color:#2B4865;
-    color: #fff;
+    /* color: #fff; */
     box-shadow: 30px #8FE3CF;
-    
+    padding-bottom: 4%;
 }
 
 .card-title{
@@ -45,9 +45,21 @@ h1{
     color: #fff;
 }
 
-.card-text{
+.cardcapital{
     font-weight:300;
     font-size: 1.5rem;
+    color:#fff;
+}
+
+.cardregion{
+    font-weight:300;
+    font-size: 1.5rem;
+    color:#fff;
+}
+.cardcode{
+    font-weight:300;
+    font-size: 1.5rem;
+    color:#fff;
 }
 .button{
     color:#fff;
@@ -56,6 +68,12 @@ h1{
     font-size: 1rem;
     margin-bottom: 20px;
 }
+.cardclimate{
+    color: #ff9900;
+    font-weight:700;
+    font-size: 1.5rem;
+}
+
 
 .anchorlist{
     display:flex;

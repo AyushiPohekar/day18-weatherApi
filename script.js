@@ -72,20 +72,23 @@ function Create_data_container(start, end) {
         img.src = data[i].flags.png;
 
         var capital = document.createElement("h6");
-        capital.setAttribute("class", "card-text text-center");
+        capital.setAttribute("class", "card-text text-center cardcapital");
         capital.innerHTML = "Capital : " + data[i].capital;
 
         var region = document.createElement("h6");
-        region.setAttribute("class", "card-text text-center");
+        region.setAttribute("class", "card-text text-center cardregion");
         region.innerHTML = "Region : " + data[i].region;
 
         var code = document.createElement("h6");
-        code.setAttribute("class", "card-text text-center");
+        code.setAttribute("class", "card-text text-center cardcode");
         code.innerHTML = "Country-code : " + data[i].cca3;
-
+         
+        var j=250+i;
+        // console.log("j",j);
         var climate = document.createElement("h6");
-        climate.setAttribute("class", "card-text text-center mt-3");
-        // climate.innerHTML='hello';
+        climate.setAttribute("class", "card-text text-center mt-3 cardclimate");
+        climate.setAttribute('id',j);
+        
 
         var button = document.createElement("button");
         button.setAttribute("class", "btn-btn-info button");
@@ -104,20 +107,18 @@ function Create_data_container(start, end) {
             );
             var data1 = await response1.json();
             console.log(data1);
-            //  climate.innerHTML=data1.main.temp;
-            // climate.id=a;
-            // climate.innerHTML = "hello";
-
-
-          } catch (err) {
+             var k=parseInt(this.id)+250;
+             console.log("k",k);
+            document.getElementById(k).innerHTML=(data1.main.temp-273.15).toFixed(2)+"&#176; C , " + data1.weather[0].description;
+            } catch (err) {
             console.log(err);
           }
         };
 
         row.append(card);
         container.append(row);
-        card.append(header, img, capital, region, code, button, climate);
-        // cardbody.append(capital);
+        card.append(header, img, capital, region, code, button,climate);
+       
       }
     } catch (error) {
       console.log(error);
@@ -175,15 +176,3 @@ document.body.append(container, Anchorlist);
 
 changePage(1);
 
-// async function get_weather_data() {
-//     try {
-//         let response = await fetch("https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
-//         console.log(response);
-//         let data = await response.json();
-//         console.log(data);
-//     }
-//     catch (error) {
-//         console.log(error);
-//     }
-// }
-// get_weather_data();

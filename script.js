@@ -68,7 +68,7 @@ function Create_data_container(start, end) {
         // card.setAttribute('class','card-body');
 
         var img = document.createElement("img");
-        img.setAttribute("class", "card-img-top img-center");
+        img.setAttribute("class", "card-img-top img-center cardimg");
         img.src = data[i].flags.png;
 
         var capital = document.createElement("h6");
